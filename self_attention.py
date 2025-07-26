@@ -9,7 +9,7 @@ class SelfAttention(nn.Module):
         self.heads = heads
         assert (dim_token % heads) == 0, 'hidden dimension must be divisible by number of heads'
         self.dim_head = dim_head if dim_head is not None else (dim_token // heads)
-        self.dim_hidden = heads * dim_head
+        self.dim_hidden = heads * self.dim_head
 
         self.W = nn.Linear(dim_token, 3*self.dim_hidden)
         self.out = nn.Linear(self.dim_hidden, dim_token)
